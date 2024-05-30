@@ -1,6 +1,10 @@
 package utilss
 
-import "context"
+import (
+	"context"
+
+	"github.com/zacksfF/TempoScale-Distributed-Infrastructure-for-Time-Series-Data/internal/domain/entity"
+)
 
 func (uc entityUsecase) ListAndCountByFilter(ctx context.Context, ef *entity.EntityFilter) ([]*entity.Entity, uint64, error) {
 	arrCh := make(chan []*entity.Entity)

@@ -1,0 +1,37 @@
+version: '3'
+
+tasks:
+  start:
+    cmds:
+      - docker-compose -p temposcale -f dev.docker-compose.yml up
+
+  end:
+    cmds:
+      - docker-compose -p temposcale -f dev.docker-compose.yml down
+
+  console:
+    cmds:
+      - docker exec -it temposcale /bin/sh
+
+  pgconsole:
+    cmds:
+      - docker exec -it temposcale_citus_coordinator psql -U golang -d temposcale_db
+
+  deploy:
+    cmds:
+      - docker build -f Dockerfile -t zacksfF/temposcale:latest --platform linux/amd64 .
+      - docker tag zacksfF/temposcale:latest zacksfF/temposcale:latest
+      - docker push zacksfF/temposcale:latest
+
+  # The following task will perform a vulnerability scan on our golang project and display any issues found.
+  scan:
+    cmds:
+      - govulncheck ./...
+      - trivy image zacksfF/temposcale:latest
+      - trivy repo https://github.com/zacksfF/TempoScale-Distributed-Infrastructure-for-Time-Series-Data.git
+
+  # The following command will upgrade all the dependencies in this project.
+  upgrade_dep:
+    cmds:
+      - go get -u ./...
+      - go mod tidy

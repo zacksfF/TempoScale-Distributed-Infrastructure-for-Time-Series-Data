@@ -1,6 +1,10 @@
 package ustilss
 
-import "context"
+import (
+	"context"
+
+	"github.com/zacksfF/TempoScale-Distributed-Infrastructure-for-Time-Series-Data/internal/domain/observation"
+)
 
 func (uc observationUsecase) ListAndCountByFilter(ctx context.Context, ef *observation.ObservationFilter) ([]*observation.Observation, uint64, error) {
 	arrCh := make(chan []*observation.Observation)

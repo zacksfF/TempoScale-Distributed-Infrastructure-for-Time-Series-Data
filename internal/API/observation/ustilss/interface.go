@@ -5,7 +5,16 @@ import (
 	"time"
 
 	"github.com/rs/zerolog"
+	"github.com/zacksfF/TempoScale-Distributed-Infrastructure-for-Time-Series-Data/internal/config"
+	oardomain "github.com/zacksfF/TempoScale-Distributed-Infrastructure-for-Time-Series-Data/internal/domain/analyze_query"
+	oadomain "github.com/zacksfF/TempoScale-Distributed-Infrastructure-for-Time-Series-Data/internal/domain/average"
+	ocdomain "github.com/zacksfF/TempoScale-Distributed-Infrastructure-for-Time-Series-Data/internal/domain/count"
 	"github.com/zacksfF/TempoScale-Distributed-Infrastructure-for-Time-Series-Data/internal/domain/observation"
+	odomain "github.com/zacksfF/TempoScale-Distributed-Infrastructure-for-Time-Series-Data/internal/domain/observation"
+	osdomain "github.com/zacksfF/TempoScale-Distributed-Infrastructure-for-Time-Series-Data/internal/domain/summation"
+	"github.com/zacksfF/TempoScale-Distributed-Infrastructure-for-Time-Series-Data/internal/pkg/mutex"
+	timep "github.com/zacksfF/TempoScale-Distributed-Infrastructure-for-Time-Series-Data/internal/pkg/time"
+	"github.com/zacksfF/TempoScale-Distributed-Infrastructure-for-Time-Series-Data/internal/pkg/uuid"
 )
 
 type Usecase interface {
@@ -20,7 +29,7 @@ type observationUsecase struct {
 	Logger                         *zerolog.Logger
 	Time                           timep.Provider
 	UUID                           uuid.Provider
-	KMutex                         kmutex.Provider
+	KMutex                         mutex.Provider
 	ObservationRepo                odomain.Repository
 	ObservationCountRepo           ocdomain.Repository
 	ObservationSummationRepo       osdomain.Repository
@@ -30,11 +39,11 @@ type observationUsecase struct {
 
 // NewObservationUsecase Constructor function for the `UserUsecase` implementation.
 func NewObservationUsecase(
-	appConf *config.Conf,
+	appConf *config.Config,
 	logger *zerolog.Logger,
 	uuidp uuid.Provider,
 	tp timep.Provider,
-	kmutexp kmutex.Provider,
+	kmutexp mutex.Provider,
 	o odomain.Repository,
 	oc ocdomain.Repository,
 	os osdomain.Repository,
@@ -43,7 +52,7 @@ func NewObservationUsecase(
 
 ) *observationUsecase {
 	return &observationUsecase{
-		HasAnalyzer:                    appConf.Setting.HasAnalyzer,
+		HasAnalyzer:                    appConf.Setting.HasAnlyzer,
 		Logger:                         logger,
 		Time:                           tp,
 		UUID:                           uuidp,

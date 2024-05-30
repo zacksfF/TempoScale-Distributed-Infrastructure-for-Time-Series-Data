@@ -7,7 +7,7 @@ import (
 	"time"
 
 	sq "github.com/Masterminds/squirrel"
-	domain "github.com/zacksfF/TempoScale-Distributed-Infrastructure-for-Time-Series-Data/internal/domain"
+	domain "github.com/zacksfF/TempoScale-Distributed-Infrastructure-for-Time-Series-Data/internal/domain/analyze_query"
 )
 
 func (r *ObservationAnalyzerRequestRepoImpl) getBy(ctx context.Context, k *sq.And) (*domain.ObservationAnalyzerRequest, error) {

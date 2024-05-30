@@ -38,7 +38,7 @@ func (uc observationUsecase) DeleteByPrimaryKey(ctx context.Context, entityID ui
 			UUID:        uc.UUID.NewUUID(),
 			Timestamp:   o.Timestamp,
 			Type:        oardomain.ObservationAnalyzerRequestDeleteType,
-			Observation: o,
+			Observation: (*oardomain.Observation)(o),
 		}
 		if err := uc.ObservationAnalyzerRequestRepo.Insert(ctx, oar); err != nil {
 			uc.Logger.Error().Err(err).Caller().Msg("database error")
