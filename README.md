@@ -37,9 +37,9 @@ In summary, TempoScale offers a high-performance, reliable, and scalable platfor
 
 Build and deploy the Docker image:
 ```sh
-docker build -f Dockerfile -t bartmika/temposcale:latest --platform linux/amd64 .
-docker tag bartmika/temposcale:latest bartmika/temposcale:latest
-docker push bartmika/temposcale:latest
+docker build -f Dockerfile -t zacksfF/temposcale:latest --platform linux/amd64 .
+docker tag zacksfF/temposcale:latest bartmika/temposcale:latest
+docker push zacksfF/temposcale:latest
 ```
 
 ## Vulnerability Scanning
@@ -47,8 +47,8 @@ docker push bartmika/temposcale:latest
 Perform a vulnerability scan on the Go project and Docker image:
 ```sh
 govulncheck ./...
-trivy image bartmika/temposcale:latest
-trivy repo https://github.com/bartmika/temposcale.git
+trivy image zacksfF/temposcale:latest
+trivy repo github.com/zacksfF/TempoScale-Distributed-Infrastructure-for-Time-Series-Data.git
 ```
 
 ## Updating Dependencies
