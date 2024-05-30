@@ -10,26 +10,6 @@ TempoScale simplifies complex infrastructure management with automated deploymen
 In summary, TempoScale offers a high-performance, reliable, and scalable platform for managing large-scale time-series data, reducing operational complexity and costs while improving security and observability.
 
 
-```markdown
-
-## Requirements
-
-### Docker
-Make sure Docker is installed on your system. You can download and install Docker from [Docker's official website](https://www.docker.com/get-started).
-### Docker Compose
-Docker Compose is required to manage multi-container Docker applications. Install Docker Compose by following the instructions on [Docker's official website](https://docs.docker.com/compose/install/).
-
-### Go
-Ensure that Go is installed. You can download it from [Go's official website](https://golang.org/dl/).
-
-### Additional Tools
-
-- **govulncheck**: Used for vulnerability scanning in Go projects. Install it by running:
-  ```sh
-  go install golang.org/x/vuln/cmd/govulncheck@latest
-  ```
-- **trivy**: Used for vulnerability scanning of Docker images and repositories. Install it by following the instructions on [Trivy's GitHub page](https://github.com/aquasecurity/trivy).
-
 ## Setting Up
 
 1. Clone the repository:
