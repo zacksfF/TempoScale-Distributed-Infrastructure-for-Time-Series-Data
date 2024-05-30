@@ -10,4 +10,79 @@ TempoScale simplifies complex infrastructure management with automated deploymen
 In summary, TempoScale offers a high-performance, reliable, and scalable platform for managing large-scale time-series data, reducing operational complexity and costs while improving security and observability.
 
 
+```markdown
+
+## Requirements
+
+### Docker
+Make sure Docker is installed on your system. You can download and install Docker from [Docker's official website](https://www.docker.com/get-started).
+### Docker Compose
+Docker Compose is required to manage multi-container Docker applications. Install Docker Compose by following the instructions on [Docker's official website](https://docs.docker.com/compose/install/).
+
+### Go
+Ensure that Go is installed. You can download it from [Go's official website](https://golang.org/dl/).
+
+### Additional Tools
+
+- **govulncheck**: Used for vulnerability scanning in Go projects. Install it by running:
+  ```sh
+  go install golang.org/x/vuln/cmd/govulncheck@latest
+  ```
+- **trivy**: Used for vulnerability scanning of Docker images and repositories. Install it by following the instructions on [Trivy's GitHub page](https://github.com/aquasecurity/trivy).
+
+## Setting Up
+
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/zacksfF/TempoScale-Distributed-Infrastructure-for-Time-Series-Data.git
+   cd TempoScale-Distributed-Infrastructure-for-Time-Series-Data
+   ```
+
+2. Start the development environment:
+   ```sh
+   docker-compose -p temposcale -f dev.docker-compose.yml up
+   ```
+
+3. Access the application shell:
+   ```sh
+   docker exec -it temposcale /bin/sh
+   ```
+
+4. Access the PostgreSQL console:
+   ```sh
+   docker exec -it temposcale_citus_coordinator psql -U golang -d temposcale_db
+   ```
+
+## Deployment
+
+Build and deploy the Docker image:
+```sh
+docker build -f Dockerfile -t bartmika/temposcale:latest --platform linux/amd64 .
+docker tag bartmika/temposcale:latest bartmika/temposcale:latest
+docker push bartmika/temposcale:latest
+```
+
+## Vulnerability Scanning
+
+Perform a vulnerability scan on the Go project and Docker image:
+```sh
+govulncheck ./...
+trivy image bartmika/temposcale:latest
+trivy repo https://github.com/bartmika/temposcale.git
+```
+
+## Updating Dependencies
+
+Upgrade all dependencies in the project:
+```sh
+go get -u ./...
+go mod tidy
+```
+
+## License
+
+This project is licensed under the Apache 2.0 License. See the [LICENSE](LICENSE) file for details.
+```
+
+This README provides instructions for installing necessary tools, setting up the development environment, deploying the application, and performing vulnerability scans and dependency updates. Make sure to adjust any specific details according to your project requirements.
 
