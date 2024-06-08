@@ -16,7 +16,7 @@ COPY . /API
 
 # Run command as described:
 # go build will build a 64bit Linux executable binary file named server in the current directory
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o stockyard .
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o temposcale .
 
 # Use a minimal base image for the final stage
 FROM alpine:latest

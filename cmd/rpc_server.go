@@ -43,7 +43,7 @@ var rpcServeCmd = &cobra.Command{
 		appServices := app.NewAppServices(appConf, uuidProvider, timeProvider, kmutexProvider, adapters)
 
 		// Load up our HTTP server and connect it with the rest of our application.
-		inputPortsServices := ports.NewServices(appConf, uuidProvider, timeProvider, kmutexProvider, appServices)
+		inputPortsServices := port.NewServices(appConf, uuidProvider, timeProvider, kmutexProvider, appServices)
 
 		done := make(chan os.Signal, 1)
 		signal.Notify(done, os.Interrupt, syscall.SIGINT, syscall.SIGTERM)
@@ -65,9 +65,7 @@ var rpcServeCmd = &cobra.Command{
 func stopMainRuntimeLoop(services inputports.Services) {
 	log.Info().Msg("Starting graceful shutdown now...")
 
-	// DEVELOPERS NOTE:
-	// Write your closing code here.
-	// . . .
+	
 
 	log.Info().Msg("Graceful shutdown finished.")
 	log.Info().Msg("Server Exited")

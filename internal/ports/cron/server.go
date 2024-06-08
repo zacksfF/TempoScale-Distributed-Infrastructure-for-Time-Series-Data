@@ -14,11 +14,11 @@ type Server struct {
 	UUID        uuid.Provider
 	KMutext     mutex.Provider
 	Scheduler   *gocron.Scheduler
-	AppServices API.server
+	AServices API.server
 }
 
 // NewServer HTTP Server constructor
-func NewServer(appConf *config.Config, uuidProvider uuid.Provider, timeProvider time.Provider, kmutexProvider kmutex.Provider, appServices app.Services) *Server {
+func NewServer(appConf *config.Config, uuidProvider uuid.Provider, timeProvider time.Provider, kmutexProvider mutex.Provider, appServices api.Services) *Server {
 
 	scheduler := gocron.NewScheduler(t.UTC)
 
