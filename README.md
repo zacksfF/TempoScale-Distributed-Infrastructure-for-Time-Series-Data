@@ -34,6 +34,63 @@ Output
 
 
 ## Setting Up
+<<<<<<< HEAD
+=======
+
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/zacksfF/TempoScale-Distributed-Infrastructure-for-Time-Series-Data.git
+   cd TempoScale-Distributed-Infrastructure-for-Time-Series-Data
+   ```
+
+2. Start the development environment:
+   ```sh
+   docker-compose -p temposcale -f dev.docker-compose.yml up
+   ```
+
+3. Access the application shell:
+   ```sh
+   docker exec -it temposcale /bin/sh
+   ```
+
+4. Access the PostgreSQL console:
+   ```sh
+   docker exec -it temposcale_citus_coordinator psql -U golang -d temposcale_db
+   ```
+
+## Deployment
+
+Build and deploy the Docker image:
+```sh
+docker build -f Dockerfile -t zacksfF/temposcale:latest --platform linux/amd64 .
+docker tag zacksfF/temposcale:latest bartmika/temposcale:latest
+docker push zacksfF/temposcale:latest
+```
+
+## Vulnerability Scanning
+
+Perform a vulnerability scan on the Go project and Docker image:
+```sh
+govulncheck ./...
+trivy image zacksfF/temposcale:latest
+trivy repo github.com/zacksfF/TempoScale-Distributed-Infrastructure-for-Time-Series-Data.git
+```
+
+## Updating Dependencies
+
+Upgrade all dependencies in the project:
+```sh
+go get -u ./...
+go mod tidy
+```
+
+## License
+
+This project is licensed under the Apache 2.0 License. See the [LICENSE](LICENSE) file for details.
+```
+
+This README provides instructions for installing necessary tools, setting up the development environment, deploying the application, and performing vulnerability scans and dependency updates. Make sure to adjust any specific details according to your project requirements.
+>>>>>>> origin
 
 1. Clone the repository:
    ```sh
