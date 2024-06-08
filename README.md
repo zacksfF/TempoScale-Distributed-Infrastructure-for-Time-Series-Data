@@ -1,4 +1,4 @@
-``Still Working on Not fixit``
+``Still Working on Not fixing``
 # TempoScale: Distributed Infrastructure for Time-Series Data
 
 ## Description 
